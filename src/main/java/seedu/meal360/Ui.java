@@ -11,17 +11,13 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        printSeparator();
         String logo = " __  __          _ ____  __  __\n" + "|  \\/  |___ __ _| |__ / / / /  \\\n"
                 + "| |\\/| / -_) _` | ||_ \\/ _ \\ () |\n" + "|_|  |_\\___\\__,_|_|___/\\___/\\__/\n";
         System.out.println("Welcome to Meal360, your ultimate Recipe Manager!\n" + logo);
-        printSeparator();
     }
 
     public void printGoodbyeMessage() {
-        printSeparator();
         System.out.println(formatMessage("Bye. Hope to see you again soon!"));
-        printSeparator();
     }
 
     public String formatMessage(String message) {
@@ -58,12 +54,10 @@ public class Ui {
     }
 
     public void listRecipe(RecipeList recipeListToPrint) {
-        printSeparator();
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
             printMessage("There is nothing to list.");
-            printSeparator();
             return;
         }
         printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
@@ -72,7 +66,6 @@ public class Ui {
             printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
                     + " ingredients)");
         }
-        printSeparator();
     }
 
     public void printHelp() {

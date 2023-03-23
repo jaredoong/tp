@@ -1,5 +1,6 @@
 package seedu.meal360;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,16 +9,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class Meal360Test {
 
-    private static final RecipeList recipes = new RecipeList();
+    private static RecipeList recipes = new RecipeList();
     private static final Parser parser = new Parser();
     private static final Ui ui = new Ui();
+
+    private static final Database database = new Database();
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -32,8 +34,8 @@ class Meal360Test {
         System.setOut(originalOut);
     }
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUpRecipes() {
         // Adding of recipes
         HashMap<String, Integer> burgerIngredients = new HashMap<>();
         burgerIngredients.put("buns", 2);
@@ -57,6 +59,11 @@ class Meal360Test {
         recipes.addRecipe(burger);
         recipes.addRecipe(pizza);
         recipes.addRecipe(salad);
+    }
+
+    @AfterEach
+    public void tearDownRecipes() {
+        recipes = new RecipeList();
     }
 
     @Test
@@ -230,5 +237,10 @@ class Meal360Test {
         inputs = new String[] {"list", "salad", "&", "pizza"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(0, recipeListToPrint.size());
+    }
+
+    @Test
+    public void testLoadDatabase() {
+        assertDoesNotThrow(() -> database.loadDatabase());
     }
 }

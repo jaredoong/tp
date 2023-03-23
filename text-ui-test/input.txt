@@ -1,4 +1,10 @@
 list
+tag tag#1 << test recipe name
+list /t tag#1
+list /t
+list apple
+tag tag#1 >> test recipe name
+list /t tag#1
 view
 view 1
 view -2
