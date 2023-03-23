@@ -1,9 +1,9 @@
 list
-tag tag#1 << test recipe name
+tag tag#1 << chicken rice
 list /t tag#1
 list /t
 list apple
-tag tag#1 >> test recipe name
+tag tag#1 >> chicken rice
 list /t tag#1
 view
 view 1
